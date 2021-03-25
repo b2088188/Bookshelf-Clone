@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/macro';
+import {blurOut} from 'components/styles/animations';
+import {useAuth} from 'context/auth-context';
 
 function Header() {
+	const {signOut} = useAuth();
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
 		<header
 			css={`
@@ -69,6 +73,7 @@ function Header() {
 				`}
 			>
 				<button
+					onClick={() => setIsMenuOpen((prev) => !prev)}
 					css={`
 						border: none;
 						background: none;
@@ -80,6 +85,21 @@ function Header() {
 						}
 						&: focus {
 							outline: none;
+							&:before{							
+								animation:${blurOut} .3s linear; 
+							
+							}
+						}
+
+						&:before {
+							content: '';
+							position: absolute;
+							background: rgba(70, 70, 70, 0.7);
+							border-radius: 50%;
+							width: 100%;
+							height: 100%;
+							scale(0);
+
 						}
 					`}
 				>
@@ -100,6 +120,7 @@ function Header() {
 						background: rgba(255, 255, 255, 0.8);
 						top: 100%;
 						right: 0;
+						${!isMenuOpen ? 'display:none' : null}
 					`}
 				>
 					<div
@@ -144,15 +165,28 @@ function Header() {
 					</div>
 					<ul>
 						<li
+							onClick={signOut}
 							css={`
 								padding: 1rem;
+								transition: background 0.25s;
+
+								&:hover {
+									cursor: pointer;
+									background: #ddd;
+								}
 							`}
 						>
-							<i class='fas fa-sign-out-alt'></i>Sign Out
+							<i class='fas fa-sign-out-alt'></i>
+							Sign Out
 						</li>
 						<li
 							css={`
 								padding: 1rem;
+								transition: background 0.25s;
+								&:hover {
+									cursor: pointer;
+									background: #ddd;
+								}
 							`}
 						>
 							<i class='fas fa-moon'></i>Appearance: Light

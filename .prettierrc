@@ -3,5 +3,6 @@
 	jsxSingleQuote: true,
 	tabWidth: 3,
 	printWidth: 100,
-	trailingComma: "none"
+	trailingComma: "none",
+	"bracketSpacing": false,
 }

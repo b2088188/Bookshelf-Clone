@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Discover from './pages/Discover';
 import Nav from './layout/Nav';
@@ -31,7 +32,9 @@ function AuthenticatedApp() {
 					grid-column: content-start / content-end;
 				`}
 			>
-				<Discover />
+				<Switch>
+					<Route path='/discover' component={<Discover />} />
+				</Switch>
 			</main>
 		</div>
 	);
