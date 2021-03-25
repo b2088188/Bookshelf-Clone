@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
 		list-style:none;
 		box-sizing:inherit;
 	}
+	a{
+		text-decoration:none;
+	}
 `;
 
 export default GlobalStyle;
