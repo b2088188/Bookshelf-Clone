@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import {Link} from 'react-router-dom';
 
 function Discover() {
 	return (
@@ -14,6 +15,7 @@ function Discover() {
 					text-align: center;
 					line-height: 1.7;
 					margin-bottom: 2.5rem;
+					color: var(--colors-text--main);
 				`}
 			>
 				<p
@@ -43,10 +45,13 @@ function Discover() {
 					css={`
 						border: solid 1px rgba(200, 200, 200, 0.7);
 						border-radius: 5px;
+						&:hover {
+							box-shadow: 1rem 1rem 1rem rgba(200, 200, 200, 0.7);
+						}
 					`}
 				>
-					<a
-						href='/'
+					<Link
+						to='/book/123'
 						css={`
 							display: flex;
 							padding: 1rem;
@@ -77,10 +82,16 @@ function Discover() {
 								padding: 1rem;
 							`}
 						>
-							<h2>Anna Karenina</h2>
+							<h2
+								css={`
+									color: var(--colors-text--main);
+								`}
+							>
+								Anna Karenina
+							</h2>
 							<span
 								css={`
-									color: #333;
+									color: var(--colors-text--main);
 								`}
 							>
 								Leo Tolstoy
@@ -89,7 +100,7 @@ function Discover() {
 								css={`
 									grid-row: 2/3;
 									grid-column: 2/3;
-									color: #333;
+									color: var(--colors-text--main);
 								`}
 							>
 								Wordsworth Editions
@@ -98,7 +109,7 @@ function Discover() {
 								css={`
 									grid-row: 3/4;
 									grid-column: 1/-1;
-									color: #333;
+									color: var(--colors-text--main);
 								`}
 							>
 								A famous legend surrounding the creation of Anna Karenina tells us that
@@ -111,7 +122,7 @@ function Discover() {
 								one of the truest ever made by a writer.
 							</p>
 						</div>
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</div>

@@ -1,15 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {blurOut} from 'components/styles/animations';
 import {useAuth} from 'context/auth-context';
 
-function Header() {
+function Header({setIsNavOpen}) {
 	const {signOut} = useAuth();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const [theme, setTheme] = useState('light');
+	const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+	function toggleTheme() {
+		setTheme(nextTheme);
+	}
+	useEffect(() => {
+		document.body.dataset.theme = theme;
+	}, [theme]);
 	return (
 		<header
 			css={`
-				background: rgba(255, 255, 255, 0.9);
+				background: var(--colors-background--sub);
+				min-height: 10rem;
 				padding: 1rem;
 				position: fixed;
 				width: 100%;
@@ -20,10 +31,12 @@ function Header() {
 			`}
 		>
 			<button
+				onClick={() => setIsNavOpen((prev) => !prev)}
 				css={`
 					border: none;
 					background: none;
 					font-size: 2rem;
+					color: var(--colors-text--main);
 					&:hover {
 						cursor: pointer;
 					}
@@ -32,7 +45,7 @@ function Header() {
 					}
 				`}
 			>
-				<i class='fas fa-list'></i>
+				<i className='fas fa-list'></i>
 			</button>
 			<form
 				css={`
@@ -48,6 +61,8 @@ function Header() {
 						font-size: 1.7rem;
 						padding: 0.5rem 1rem;
 						border: solid 1px rgba(200, 200, 200, 0.5);
+						color: var(--colors-text--main);
+						background: var(--colors-background--sub);
 						&:focus {
 							outline: none;
 							border: solid 1px #1364af;
@@ -57,14 +72,15 @@ function Header() {
 				<button
 					css={`
 						padding: 0.5rem 2rem;
+						background: var(--colors-background--main);
 						border: solid 1px rgba(200, 200, 200, 0.5);
-						color: #777;
+						color: var(--colors-text--main);
 						&:hover {
 							cursor: pointer;
 						}
 					`}
 				>
-					<i class='fas fa-search'></i>
+					<i className='fas fa-search'></i>
 				</button>
 			</form>
 			<div
@@ -96,8 +112,7 @@ function Header() {
 							position: absolute;
 							background: rgba(70, 70, 70, 0.7);
 							border-radius: 50%;
-							width: 100%;
-							height: 100%;
+	
 							scale(0);
 
 						}
@@ -117,7 +132,7 @@ function Header() {
 				<div
 					css={`
 						position: absolute;
-						background: rgba(255, 255, 255, 0.8);
+						background: var(--colors-background--sub);
 						top: 100%;
 						right: 0;
 						${!isMenuOpen ? 'display:none' : null}
@@ -150,6 +165,7 @@ function Header() {
 							<h3
 								css={`
 									font-size: 1.5rem;
+									color: var(--colors-text--main);
 								`}
 							>
 								lin lin
@@ -157,6 +173,7 @@ function Header() {
 							<h4
 								css={`
 									font-size: 1.3rem;
+									color: var(--colors-text--main);
 								`}
 							>
 								wbccfh16@gmail.com
@@ -169,27 +186,29 @@ function Header() {
 							css={`
 								padding: 1rem;
 								transition: background 0.25s;
-
+								color: var(--colors-text--main);
 								&:hover {
 									cursor: pointer;
-									background: #ddd;
+									background: var(--colors-background--list);
 								}
 							`}
 						>
-							<i class='fas fa-sign-out-alt'></i>
+							<i className='fas fa-sign-out-alt'></i>
 							Sign Out
 						</li>
 						<li
+							onClick={toggleTheme}
 							css={`
 								padding: 1rem;
 								transition: background 0.25s;
+								color: var(--colors-text--main);
 								&:hover {
+									background: var(--colors-background--list);
 									cursor: pointer;
-									background: #ddd;
 								}
 							`}
 						>
-							<i class='fas fa-moon'></i>Appearance: Light
+							<i className='fas fa-moon'></i>Appearance: Light
 						</li>
 					</ul>
 				</div>

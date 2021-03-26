@@ -16,7 +16,7 @@ function FullPageSpinner() {
 				}
 			`}
 		>
-			<i class='fas fa-spinner'></i>
+			<i className='fas fa-spinner'></i>
 		</div>
 	);
 }

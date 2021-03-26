@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import GlobalStyle from 'components/GlobalStyle';
+import {BrowserRouter as Router} from 'react-router-dom';
+import GlobalStyle from 'components/styles/GlobalStyle';
 
-function AppProviders({ children }) {
+function AppProviders({children}) {
 	return (
 		<Router>
 			<GlobalStyle />
